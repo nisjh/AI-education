@@ -1,0 +1,188 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+  Palette — deep blue, teal, white, soft gray.
+  Light mode is paper-white with soft gray surfaces; dark mode is a deep
+  navy that stays in the same hue family so the product reads as one place.
+*/
+:root {
+  --background: #ffffff;
+  --foreground: #0c2340;
+
+  --surface: #f4f6f9;
+  --surface-strong: #e9eef4;
+
+  --card: #ffffff;
+  --card-foreground: #0c2340;
+
+  --popover: #ffffff;
+  --popover-foreground: #0c2340;
+
+  --primary: #12507e;
+  --primary-foreground: #ffffff;
+
+  --secondary: #eef2f7;
+  --secondary-foreground: #12507e;
+
+  --muted: #f4f6f9;
+  --muted-foreground: #51677f;
+
+  --accent: #0c7c74;
+  --accent-foreground: #ffffff;
+  --accent-soft: #e2f4f1;
+
+  --destructive: #b42318;
+  --destructive-foreground: #ffffff;
+
+  --border: #dde3ea;
+  --input: #c8d2de;
+  --ring: #0c7c74;
+
+  --radius: 0.625rem;
+}
+
+.dark {
+  --background: #081525;
+  --foreground: #e8eef5;
+
+  --surface: #0d1e33;
+  --surface-strong: #12283f;
+
+  --card: #0d1e33;
+  --card-foreground: #e8eef5;
+
+  --popover: #0d1e33;
+  --popover-foreground: #e8eef5;
+
+  --primary: #7fb3e0;
+  --primary-foreground: #06121f;
+
+  --secondary: #16304a;
+  --secondary-foreground: #d3e2f3;
+
+  --muted: #12283f;
+  --muted-foreground: #a3b7cc;
+
+  --accent: #5ec7bc;
+  --accent-foreground: #06121f;
+  --accent-soft: #11362f;
+
+  --destructive: #f97066;
+  --destructive-foreground: #06121f;
+
+  --border: #1d344f;
+  --input: #274462;
+  --ring: #5ec7bc;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-soft: var(--accent-soft);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --font-sans: var(--font-plex-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-source-serif), ui-serif, Georgia, serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, SFMono-Regular, monospace;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Visible, consistent keyboard focus everywhere. */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background-color: var(--accent-soft);
+    color: var(--foreground);
+  }
+}
+
+@layer components {
+  /* Section eyebrow: mono, uppercase, with a short rule. Labels every major
+     band of content so the page hierarchy is readable at a glance. */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+  }
+
+  .eyebrow::before {
+    content: "";
+    width: 1.75rem;
+    height: 1px;
+    background-color: currentColor;
+    opacity: 0.6;
+  }
+
+  .display {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.12;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
