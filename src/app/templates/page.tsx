@@ -34,7 +34,7 @@ export default function TemplatesPage() {
           return (
             <Card
               key={template.id}
-              className="group relative flex flex-col p-5 transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-[0_6px_20px_rgba(12,35,64,0.07)]"
+              className="group relative flex flex-col p-5 transition-[border-color,box-shadow,transform] duration-200 hover:border-accent/40 hover:shadow-[0_6px_20px_rgba(12,35,64,0.07)]"
             >
               <div className="flex items-start justify-between gap-3">
                 <span className="flex size-10 items-center justify-center rounded-lg bg-accent-soft text-accent">

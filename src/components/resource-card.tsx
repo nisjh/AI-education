@@ -22,18 +22,13 @@ export function ResourceCard({
     <Card
       className={cn(
         "group relative flex flex-col transition-[border-color,box-shadow,transform] duration-200",
-        "hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-[0_6px_20px_rgba(12,35,64,0.07)]",
+        "hover:border-accent/40 hover:shadow-[0_6px_20px_rgba(12,35,64,0.07)]",
         "focus-within:border-accent/60",
         className,
       )}
     >
       <div className="flex items-start justify-between gap-3 p-5 pb-3">
-        <span
-          className={cn(
-            "inline-flex items-center gap-1.5 rounded-md px-2 py-1 font-mono text-[0.6875rem] uppercase tracking-wider",
-            category.accentClass,
-          )}
-        >
+        <span className="inline-flex items-center gap-1.5 rounded-md bg-accent-soft px-2 py-1 font-mono text-[0.6875rem] uppercase tracking-wider text-accent">
           <Icon className="size-3.5" aria-hidden />
           {category.name}
         </span>

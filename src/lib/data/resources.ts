@@ -23,10 +23,12 @@ export const resources: Resource[] = [
     sections: [
       {
         heading: "Why start with your own prep",
+        note: "Do this on a week you are not also being observed. You are judging the tool, not performing.",
         body: "The fastest way to judge whether a tool helps is to point it at work you already know how to do well. You can spot a weak lesson plan in your own subject in about ten seconds. That instinct is the quality control, and it only works when you are the reader.",
       },
       {
         heading: "The five days",
+        note: "Friday is the one most teachers keep doing after the week ends.",
         body: "Each day takes one prep period or less. Stop at any point where the output is worse than what you would have written yourself — that is useful information, not a failure.",
         steps: [
           "Monday: ask for three warm-up questions for a lesson you already taught. Compare them to the ones you used.",
@@ -35,6 +37,7 @@ export const resources: Resource[] = [
           "Thursday: draft a rubric for an assignment you have already graded, then check it against the grades you gave.",
           "Friday: write one parent email you have been putting off, then rewrite it in your own voice.",
         ],
+        stepKind: "sequence",
       },
       {
         heading: "What to notice",
@@ -64,6 +67,7 @@ export const resources: Resource[] = [
       },
       {
         heading: "Ask in the order you plan",
+        note: "Short on time? Do step 2 alone. Three ways to show mastery changes the lesson more than the other four steps combined.",
         body: "Work backward the way you would on paper. Ask for the assessment evidence first, then the practice, then the opening. Generating the whole plan in one shot produces a document that looks complete and hides the weak middle.",
         steps: [
           "State the standard verbatim and what mastery looks like in your class.",
@@ -72,9 +76,11 @@ export const resources: Resource[] = [
           "Ask for a five-minute opener that surfaces the prior knowledge the sequence assumes.",
           "Ask what is most likely to confuse students, then plan for the two you find credible.",
         ],
+        stepKind: "sequence",
       },
       {
         heading: "What to rewrite yourself",
+        note: "Generated examples skew suburban and American. That is usually the first thing to replace.",
         body: "Rewrite the objective in your own words, replace generic examples with ones from your community or current unit, and cut anything you cannot explain if a student asks why it is there.",
       },
     ],
@@ -96,6 +102,7 @@ export const resources: Resource[] = [
     sections: [
       {
         heading: "Same standard, different runway",
+        note: "Read the most supported version first. If a student could finish it without doing the thinking the standard names, the tiering has slipped.",
         body: "Tiering goes wrong when the supports quietly change what students are being asked to learn. Anchor every version to the same success criteria, and vary only the runway: sentence frames, worked examples, chunking, vocabulary pre-teaching, or reading level of the source text.",
       },
       {
@@ -107,6 +114,7 @@ export const resources: Resource[] = [
           "Ask for supports that do not reduce the cognitive demand.",
           "Ask it to name which support it would remove first as students gain independence.",
         ],
+        stepKind: "sequence",
       },
       {
         heading: "Check before you print",
@@ -132,6 +140,7 @@ export const resources: Resource[] = [
     sections: [
       {
         heading: "Six moves",
+        note: "If you only do one, make it process evidence. Hardest to fabricate, fastest to check.",
         body: "Each one shifts the work toward evidence a model cannot fabricate. You do not need all six; two are usually enough to change what the assignment measures.",
         steps: [
           "Anchor it in local, recent, or classroom-specific material a model has never seen.",
@@ -141,6 +150,7 @@ export const resources: Resource[] = [
           "Ask for a decision with tradeoffs and a defense, not a summary.",
           "Make the AI part explicit: require a disclosed AI draft plus the student's critique of it.",
         ],
+        stepKind: "set",
       },
       {
         heading: "The tradeoff to name out loud",
@@ -165,12 +175,14 @@ export const resources: Resource[] = [
     sections: [
       {
         heading: "Three questions",
+        note: "Read the disclosures before you grade, not after. They change how you read the work.",
         body: "Long honor-code paragraphs get skimmed. Three concrete questions at the end of the assignment get answered.",
         steps: [
           "Which tools did you use, if any?",
           "What exactly did you ask them to do?",
           "What did you change, keep, or throw out, and why?",
         ],
+        stepKind: "sequence",
       },
       {
         heading: "Wording by grade band",
@@ -199,6 +211,7 @@ export const resources: Resource[] = [
     sections: [
       {
         heading: "Keep the argument, change the load",
+        note: "Check the simplified version for 'usually', 'most', and 'some'. Those are the words that quietly disappear.",
         body: "Ask explicitly for the claim and evidence structure to stay identical while sentence length, clause density, and low-frequency vocabulary change. Without that instruction, models tend to summarize, which removes the reasoning students are supposed to analyze.",
       },
       {
@@ -233,6 +246,7 @@ export const resources: Resource[] = [
       },
       {
         heading: "Test the middle band",
+        note: "Use work you graded last year. With this year's you will remember why you scored it that way.",
         body: "Rubrics fail in the middle. Take two pieces of past student work you scored differently and check whether the new descriptors would have produced the same two scores. If not, the language is not discriminating and needs your revision.",
         steps: [
           "Paste your criteria and scale.",
@@ -240,6 +254,7 @@ export const resources: Resource[] = [
           "Test against two past samples you scored differently.",
           "Rewrite any row where you would have to guess.",
         ],
+        stepKind: "sequence",
       },
     ],
   },
@@ -260,6 +275,7 @@ export const resources: Resource[] = [
     sections: [
       {
         heading: "Comment banks, not comments",
+        note: "Build the bank once in August. Selecting and finishing is the part you repeat 140 times.",
         body: "The efficient use is generating a bank of stems for the four or five patterns you see every year, then selecting and finishing each one by hand with a detail from that student's work. The specific detail is the part that changes behavior.",
       },
       {
@@ -315,6 +331,7 @@ export const resources: Resource[] = [
     sections: [
       {
         heading: "Setup",
+        note: "Print it. If students can scroll, half of them will paste the question straight back into a tool.",
         body: "Before class, ask a model a question from your current unit that is just past its reliable range — a multi-step calculation, a claim needing a citation, a comparison of two local policies. Print the response.",
       },
       {
@@ -326,6 +343,7 @@ export const resources: Resource[] = [
           "Whole class sorts corrections into factual errors, missing context, and reasoning gaps.",
           "Close by asking what kind of question this tool handled well, and what kind it did not.",
         ],
+        stepKind: "sequence",
       },
       {
         heading: "Why it works",
@@ -350,6 +368,7 @@ export const resources: Resource[] = [
     sections: [
       {
         heading: "The constraint is the lesson",
+        note: "Expect someone to break the questioning-only rule in the first five minutes. That moment is the discussion, not a discipline problem.",
         body: "Students give the model a strict instruction: ask me questions about my draft, one at a time, and do not write any part of it for me. The value comes from students holding that line and noticing when they want to break it.",
       },
       {
@@ -361,6 +380,7 @@ export const resources: Resource[] = [
           "Tool closes. Students revise from their own answers, not from any generated text.",
           "Exit ticket: which question changed the draft the most?",
         ],
+        stepKind: "sequence",
       },
     ],
   },
@@ -388,6 +408,7 @@ export const resources: Resource[] = [
           "Each team must find a real, citable source for their top two objections.",
           "Objections that cannot be sourced get struck, and teams reflect on why they sounded convincing.",
         ],
+        stepKind: "sequence",
       },
     ],
   },
@@ -409,6 +430,7 @@ export const resources: Resource[] = [
     sections: [
       {
         heading: "The one-sentence version",
+        note: "You will be asked whether it thinks or is alive. 'Nobody in this room can settle that, and it does not change what you have to check' is a fair answer.",
         body: "These systems predict likely next words based on patterns in an enormous amount of text, which is why they sound fluent about everything and are reliable about much less than they sound.",
       },
       {
@@ -420,6 +442,7 @@ export const resources: Resource[] = [
           "Grades 9–12: add hallucination, bias inherited from training data, and why a confident tone is not evidence.",
           "Early college: add the limits of benchmarks and why capability varies sharply by task and domain.",
         ],
+        stepKind: "set",
       },
       {
         heading: "What students should take away",
@@ -451,6 +474,7 @@ export const resources: Resource[] = [
           "Check it: find that source, not a page quoting the same claim.",
           "Mark it: verified, contradicted, or could not confirm — all three are acceptable answers.",
         ],
+        stepKind: "sequence",
       },
       {
         heading: "Make 'could not confirm' respectable",
@@ -476,6 +500,7 @@ export const resources: Resource[] = [
     sections: [
       {
         heading: "Keep out",
+        note: "Screenshots count. A cropped gradebook or a photo of a worksheet with a name on it is the same disclosure as typing it.",
         body: "Assume anything you paste may be stored or reviewed. Student records are protected by law in most districts, and consumer AI tools are usually not covered by your district's data agreements.",
         steps: [
           "Names, initials, student ID numbers, and photos.",
@@ -484,6 +509,7 @@ export const resources: Resource[] = [
           "Family contact details, addresses, and immigration or custody information.",
           "Anything you would not read aloud in a staff meeting with the door open.",
         ],
+        stepKind: "set",
       },
       {
         heading: "Safer substitutes",
@@ -512,6 +538,7 @@ export const resources: Resource[] = [
     sections: [
       {
         heading: "Where it shows up",
+        note: "Names are the fastest check. Generated examples default to a narrow set, and your students notice before you do.",
         body: "Name choices, occupation defaults, whose history counts as background knowledge, which dialects are marked as errors, and which examples are treated as universal.",
       },
       {
@@ -523,6 +550,7 @@ export const resources: Resource[] = [
           "Ask whether a student in your room would see themselves as a participant or as a subject.",
           "Replace one generic example with something from your community.",
         ],
+        stepKind: "sequence",
       },
     ],
   },
@@ -584,9 +612,11 @@ export const resources: Resource[] = [
           "10 min — report out on what was useful and what was wrong.",
           "10 min — agree on three shared rules: what we will not paste, what we tell students, what we will try before the next session.",
         ],
+        stepKind: "sequence",
       },
       {
         heading: "Facilitation notes",
+        note: "Open with a bad output of your own. It buys you the room's trust for the next forty minutes.",
         body: "Expect and welcome skepticism. Ask people who found bad output to present it — that credibility is what makes the useful cases believable. Close with a specific, small commitment rather than a policy.",
       },
       {
@@ -612,6 +642,7 @@ export const resources: Resource[] = [
     sections: [
       {
         heading: "The three questions families ask",
+        note: "Send it before the first assignment that allows AI, not after. The timing is what makes it reassuring.",
         body: "Is my child's information safe? Will they still learn to write and think? How will you know if they cheated? Answer all three in the first paragraph.",
       },
       {
@@ -623,6 +654,7 @@ export const resources: Resource[] = [
           "What never happens: student names, grades, or records going into an outside tool.",
           "How to raise a concern: reply to this message, and I will call you.",
         ],
+        stepKind: "sequence",
       },
     ],
   },

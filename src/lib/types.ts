@@ -48,8 +48,6 @@ export interface Category {
   /** One plain sentence describing what a teacher finds here. */
   description: string;
   icon: LucideIcon;
-  /** Tailwind classes for the category chip, tuned for both themes. */
-  accentClass: string;
 }
 
 export type UseCase =
@@ -65,8 +63,15 @@ export type UseCase =
 export interface ResourceSection {
   heading: string;
   body: string;
-  /** Optional ordered steps rendered as a checklist. */
   steps?: string[];
+  /**
+   * What the steps actually are. A sequence is performed in order and gets
+   * numbered; a set is a menu of options and gets a plain rule. Defaults to a
+   * set, because most lists are not sequences and numbering them lies.
+   */
+  stepKind?: "sequence" | "set";
+  /** A teacher's aside, hung in the margin beside this section. */
+  note?: string;
 }
 
 export interface Resource {

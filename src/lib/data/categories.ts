@@ -18,7 +18,6 @@ export const categories: Category[] = [
     description:
       "Draft plans, warm-ups, and pacing you can adapt to your class in one sitting.",
     icon: BookOpen,
-    accentClass: "bg-accent-soft text-accent",
   },
   {
     id: "assignment-design",
@@ -26,7 +25,6 @@ export const categories: Category[] = [
     description:
       "Build tasks that stay meaningful when students have AI on their phones.",
     icon: PenLine,
-    accentClass: "bg-accent-soft text-accent",
   },
   {
     id: "assessment",
@@ -34,7 +32,6 @@ export const categories: Category[] = [
     description:
       "Write rubrics, exit tickets, and feedback you still control the standards for.",
     icon: ClipboardCheck,
-    accentClass: "bg-accent-soft text-accent",
   },
   {
     id: "classroom-activities",
@@ -42,7 +39,6 @@ export const categories: Category[] = [
     description:
       "Structured activities where students work with, or against, an AI response.",
     icon: Users,
-    accentClass: "bg-accent-soft text-accent",
   },
   {
     id: "ai-literacy",
@@ -50,7 +46,6 @@ export const categories: Category[] = [
     description:
       "Teach how these tools work, where they fail, and how to check their claims.",
     icon: GraduationCap,
-    accentClass: "bg-accent-soft text-accent",
   },
   {
     id: "safety-ethics",
@@ -58,7 +53,6 @@ export const categories: Category[] = [
     description:
       "Student privacy, bias, disclosure, and the limits of what belongs in a prompt.",
     icon: ShieldCheck,
-    accentClass: "bg-accent-soft text-accent",
   },
   {
     id: "policy-leadership",
@@ -66,7 +60,6 @@ export const categories: Category[] = [
     description:
       "Department and school-level guidance, family communication, and PD planning.",
     icon: Landmark,
-    accentClass: "bg-accent-soft text-accent",
   },
   {
     id: "prompt-templates",
@@ -74,7 +67,6 @@ export const categories: Category[] = [
     description:
       "Copy-ready prompts with placeholders for your grade, subject, and objective.",
     icon: FileText,
-    accentClass: "bg-accent-soft text-accent",
   },
 ];
 
