@@ -15,6 +15,7 @@ before generated material reaches one.
 | `/` | Landing page: hero with live prompt examples, quick search, featured categories, "Start here" path, recommended-for-you, prompt library preview, FAQ |
 | `/library` | Filterable grid of resources and prompt templates — search, category, grade band, subject, and tag filters, synced to the URL |
 | `/library/[id]` | Full resource with an at-a-glance panel, a review note, and related resources |
+| `/tools` | Curriculum AI tools: upload or paste material, choose IB DP/MYP or AP, subject, level, and output, then build a prompt for that exact context. Includes example results and a generation history |
 | `/prompts` | Prompt generator plus the full prompt library |
 | `/guide` | Best practices, when to use AI and when not to, academic integrity, three example policies, and an interactive safe-use checklist |
 | `/templates` | Five editable templates |
@@ -57,12 +58,19 @@ src/
 │   ├── home/                 # landing page sections
 │   ├── library/              # filterable browser
 │   ├── prompts/              # generator form
+│   ├── tools/                # curriculum tools: upload, selectors, preview, history
 │   ├── templates/            # template editor
 │   └── guide/                # safe-use checklist
 ├── hooks/
 │   └── use-local-storage.ts  # localStorage as a useSyncExternalStore source
 └── lib/
     ├── data/                 # resources, prompts, templates, categories, guide, FAQ
+    ├── tools/                # curriculum data, generation tasks, composer, samples
+    │   ├── curricula.ts      # command terms, ATL skills, MYP criteria, AP formats
+    │   ├── tasks.ts          # generators, output formats, transformations
+    │   ├── composer.ts       # builds the curriculum-specific generation prompt
+    │   ├── samples.ts        # worked example outputs (fixtures, not live output)
+    │   └── extraction.ts     # text extraction boundary for files
     ├── prompt-composer.ts    # builds a prompt from the generator form
     ├── types.ts              # the data model
     └── utils.ts
@@ -80,6 +88,19 @@ All content is local mock data in `src/lib/data`, typed in `src/lib/types.ts`:
 
 To add content, append to the relevant array — the library, filters, tag chips, counts, and
 static routes all derive from the data.
+
+### Curriculum tools
+
+The tools area composes prompts; it does not call a model. `composeGenerationPrompt`
+assembles the source text, curriculum block (IB command terms, ATL skills, MYP criterion
+or DP paper — or AP course and question format), the selected generator's asks, output
+formats, transformations, and any regeneration refinements into one prompt the teacher
+runs in their own approved tool. The "Example result" tab shows teacher-written fixtures
+from `samples.ts`, labelled in the UI as worked examples rather than live output.
+
+File handling lives behind `extraction.ts`. Plain text and markdown are read in the
+browser; PDF, DOCX, and images return a `needs-paste` state with a clear notice instead
+of fabricated text. Dropping in a real parser or OCR step means changing that one file.
 
 ### Adding a backend later
 

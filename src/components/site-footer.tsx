@@ -7,6 +7,7 @@ const COLUMNS = [
     heading: "Find",
     links: [
       { href: "/library", label: "Resource library" },
+      { href: "/tools", label: "Curriculum AI tools" },
       { href: "/prompts", label: "Prompt generator" },
       { href: "/templates", label: "Templates" },
       { href: "/saved", label: "Saved items" },
@@ -24,8 +25,9 @@ const COLUMNS = [
   {
     heading: "Start",
     links: [
+      { href: "/tools?curriculum=ib", label: "IB DP / MYP tools" },
+      { href: "/tools?curriculum=ap", label: "AP tools" },
       { href: "/library/first-week-with-ai", label: "Your first week" },
-      { href: "/library/how-llms-work", label: "How these tools work" },
       { href: "/library/privacy-and-student-data", label: "What never goes in a prompt" },
       { href: "/#faq", label: "Common questions" },
     ],

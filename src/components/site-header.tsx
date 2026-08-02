@@ -11,10 +11,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
+/** Short labels so five items and the search field fit the header at once. */
 const NAV = [
-  { href: "/library", label: "Resource library" },
-  { href: "/prompts", label: "Prompt generator" },
-  { href: "/guide", label: "Classroom guide" },
+  { href: "/library", label: "Library" },
+  { href: "/tools", label: "Curriculum AI tools" },
+  { href: "/prompts", label: "Prompts" },
+  { href: "/guide", label: "Guide" },
   { href: "/templates", label: "Templates" },
 ] as const;
 
@@ -48,7 +50,7 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <nav aria-label="Main" className="ml-4 hidden items-center gap-1 lg:flex">
+        <nav aria-label="Main" className="ml-4 hidden items-center gap-1 xl:flex">
           {NAV.map((item) => {
             const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
             return (
@@ -72,7 +74,7 @@ export function SiteHeader() {
         <form
           onSubmit={submitSearch}
           role="search"
-          className="ml-auto hidden min-w-0 max-w-64 flex-1 md:block"
+          className="ml-auto hidden min-w-0 max-w-56 flex-1 md:block"
         >
           <label htmlFor="header-search" className="sr-only">
             Search resources and prompts
@@ -115,7 +117,7 @@ export function SiteHeader() {
           <Button
             variant="ghost"
             size="icon"
-            className="lg:hidden"
+            className="xl:hidden"
             aria-expanded={menuOpen}
             aria-controls="mobile-nav"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
@@ -129,7 +131,7 @@ export function SiteHeader() {
       {menuOpen && (
         <div
           id="mobile-nav"
-          className="border-t border-border bg-background lg:hidden animate-in slide-in-from-top-2 fade-in-0 duration-200"
+          className="border-t border-border bg-background xl:hidden animate-in slide-in-from-top-2 fade-in-0 duration-200"
         >
           <nav aria-label="Mobile" className="mx-auto max-w-6xl px-4 py-3 sm:px-6">
             <form onSubmit={submitSearch} role="search" className="mb-3 md:hidden">

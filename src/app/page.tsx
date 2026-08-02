@@ -8,6 +8,7 @@ import { PromptCard } from "@/components/prompt-card";
 import { RecommendedForYou } from "@/components/recommended-for-you";
 import { ResourceCard } from "@/components/resource-card";
 import { SectionHeading } from "@/components/section-heading";
+import { ToolFeatureCards } from "@/components/tools/tool-feature-cards";
 import { Button } from "@/components/ui/button";
 import { prompts } from "@/lib/data/prompts";
 import { featuredResources } from "@/lib/data/resources";
@@ -66,6 +67,20 @@ export default function HomePage() {
             Browse by category
           </h2>
           <FeaturedCategories />
+        </section>
+
+        <section aria-labelledby="curriculum-tools">
+          <SectionHeading
+            eyebrow="Curriculum AI tools"
+            title="Start from the worksheet already on your desk"
+            description="Upload or paste your material, pick IB or AP, and get a prompt built for that subject, level, and question format. Similar practice problems, vocabulary examples, source analysis, exit tickets, and review sets."
+            action={{ href: "/tools", label: "Open the tools" }}
+            className="mb-8"
+          />
+          <h2 id="curriculum-tools" className="sr-only">
+            Curriculum AI tools
+          </h2>
+          <ToolFeatureCards />
         </section>
 
         <section aria-labelledby="start-here">
