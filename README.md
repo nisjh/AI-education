@@ -20,10 +20,35 @@ before generated material reaches one.
 | `/guide` | Best practices, when to use AI and when not to, academic integrity, three example policies, and an interactive safe-use checklist |
 | `/templates` | Five editable templates |
 | `/templates/[id]` | In-app editor with autosave and copy-as-text |
-| `/saved` | Bookmarked resources, prompts, and templates |
+| `/saved` | Bookmarked resources, prompts, and templates (account) |
+| `/sign-up`, `/log-in`, `/account` | Accounts, profile, and account deletion |
 
-Everything works without an account. Saved items, teacher preferences, checklist progress, and
-template drafts live in `localStorage`.
+## Accounts
+
+Reading and generating never asks who you are. An account is required only for the things that
+persist:
+
+| Free | Requires an account |
+| --- | --- |
+| The whole library, guide, and FAQ | Bookmarks |
+| Prompt generator and prompt library | Template drafts |
+| Curriculum AI tools, start to finish | Generation history |
+| Copying anything; grade/subject preference | Checklist progress |
+
+Gated features still work in-session when signed out — you can bookmark, type into a template,
+and build generations. Nothing is written until there is an account to write it against, and each
+screen says so rather than blocking the UI.
+
+**This build has no server.** Accounts live in `localStorage`; passwords are stretched with
+PBKDF2-SHA256 (100k iterations, per-account salt) via Web Crypto, so they are not stored in plain
+text — but anyone with devtools can read or edit local storage, so **this is not a security
+boundary**, and accounts do not follow a teacher to another device. The sign-up page says both
+things plainly. Do not put anything sensitive behind it.
+
+Swapping in real auth means replacing one file, `src/lib/auth/local-store.ts`, which exports
+`signUp`, `logIn`, `logOut`, `updateProfile`, and `deleteAccount`. Nothing else imports storage
+directly: components read the session through `useAuth()` and persist through
+`useAccountStorage()`, which namespaces every key by account id.
 
 ## Stack
 
@@ -54,7 +79,8 @@ src/
 │   └── saved/                # bookmarks
 ├── components/
 │   ├── ui/                   # shadcn/ui-style primitives
-│   ├── providers/            # theme, saved items, teacher preferences
+│   ├── auth/                 # forms, account menu, gates, account view
+│   ├── providers/            # theme, auth, saved items, teacher preferences
 │   ├── home/                 # landing page sections
 │   ├── library/              # filterable browser
 │   ├── prompts/              # generator form
@@ -62,8 +88,10 @@ src/
 │   ├── templates/            # template editor
 │   └── guide/                # safe-use checklist
 ├── hooks/
-│   └── use-local-storage.ts  # localStorage as a useSyncExternalStore source
+│   ├── use-local-storage.ts  # localStorage as a useSyncExternalStore source
+│   └── use-account-storage.ts # the same, namespaced per account
 └── lib/
+    ├── auth/                 # account store and types (the swap point)
     ├── data/                 # resources, prompts, templates, categories, guide, FAQ
     ├── tools/                # curriculum data, generation tasks, composer, samples
     │   ├── curricula.ts      # command terms, ATL skills, MYP criteria, AP formats
@@ -104,9 +132,10 @@ of fabricated text. Dropping in a real parser or OCR step means changing that on
 
 ### Adding a backend later
 
-The storage boundary is deliberately narrow. Swapping `localStorage` for Supabase or Firebase
-means reimplementing `src/hooks/use-local-storage.ts` and the two providers in
-`src/components/providers/`; no component reads storage directly.
+The storage boundary is deliberately narrow. Moving to Supabase or Firebase means reimplementing
+`src/lib/auth/local-store.ts` (accounts and sessions) and `src/hooks/use-local-storage.ts`
+(everything a teacher saves). No component touches storage or the auth store directly — they go
+through `useAuth()`, `useAccountStorage()`, and the providers in `src/components/providers/`.
 
 ## Design
 

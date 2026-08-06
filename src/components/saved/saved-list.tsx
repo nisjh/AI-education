@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ArrowUpRight, Bookmark, Trash2 } from "lucide-react";
 
+import { SignInPrompt } from "@/components/auth/sign-in-prompt";
 import { PromptCard } from "@/components/prompt-card";
 import { useSavedItems } from "@/components/providers/saved-items-provider";
 import { ResourceCard } from "@/components/resource-card";
@@ -14,7 +15,16 @@ import { getResource } from "@/lib/data/resources";
 import { getTemplate } from "@/lib/data/templates";
 
 export function SavedList() {
-  const { items, ready, clear } = useSavedItems();
+  const { items, ready, clear, persists } = useSavedItems();
+
+  if (ready && !persists) {
+    return (
+      <SignInPrompt
+        title="Log in to keep saved items"
+        detail="Bookmarking works while you are on the site, but the list is only kept once there is an account to keep it against. Everything else — the library, the guide, the prompt generator, the curriculum tools — needs no account at all."
+      />
+    );
+  }
 
   if (!ready) {
     return (
@@ -47,7 +57,7 @@ export function SavedList() {
     <div className="space-y-14">
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border pb-4">
         <p className="font-mono text-[0.6875rem] uppercase tracking-wider text-muted-foreground">
-          {items.length} saved {items.length === 1 ? "item" : "items"} in this browser
+          {items.length} saved {items.length === 1 ? "item" : "items"} in your account
         </p>
         <Button variant="ghost" size="sm" onClick={clear}>
           <Trash2 aria-hidden />
@@ -131,7 +141,7 @@ function EmptySaved() {
       <p className="mt-4 font-medium">Nothing saved yet</p>
       <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-muted-foreground">
         Use the bookmark button on any resource, prompt, or template and it will show up
-        here. Saved items live in this browser, so no account is needed.
+        here.
       </p>
       <div className="mt-6 flex flex-wrap justify-center gap-3">
         <Button asChild>

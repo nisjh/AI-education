@@ -25,7 +25,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { useLocalStorage } from "@/hooks/use-local-storage";
+import { useAccountStorage } from "@/hooks/use-account-storage";
 import { composeGenerationPrompt, describeGeneration } from "@/lib/tools/composer";
 import { DEFAULT_AP, DEFAULT_IB } from "@/lib/tools/curricula";
 import { EMPTY_SOURCE, extractFromText } from "@/lib/tools/extraction";
@@ -90,10 +90,8 @@ export function ToolsWorkspace() {
     course: getToolSubject(initialSubject).apCourses[0] ?? DEFAULT_AP.course,
   }));
 
-  const [history, setHistory] = useLocalStorage<HistoryEntry[]>(
-    HISTORY_KEY,
-    NO_HISTORY,
-  );
+  const [history, setHistory, { persists: historyPersists }] =
+    useAccountStorage<HistoryEntry[]>(HISTORY_KEY, NO_HISTORY);
 
   const subject = getToolSubject(subjectId);
   const availableTasks = tasksForFamily(subject.family);
@@ -411,6 +409,7 @@ export function ToolsWorkspace() {
         </div>
 
         <HistoryPanel
+          persists={historyPersists}
           entries={history}
           onRestore={restore}
           onRemove={(id) =>

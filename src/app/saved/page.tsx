@@ -6,7 +6,7 @@ import { SavedList } from "@/components/saved/saved-list";
 export const metadata: Metadata = {
   title: "Saved items",
   description:
-    "Your bookmarked resources, prompts, and templates, stored in this browser without an account.",
+    "Your bookmarked resources, prompts, and templates.",
 };
 
 export default function SavedPage() {
@@ -15,7 +15,7 @@ export default function SavedPage() {
       <PageHeader
         eyebrow="Saved items"
         title="What you have kept for later"
-        description="Bookmarks are stored in this browser only. Nothing is uploaded, and clearing your browser data clears this list."
+        description="Bookmarks are kept against your account on this browser. Nothing is uploaded, and clearing your browser data clears them."
       />
 
       <div className="mt-12">

@@ -11,6 +11,7 @@ const COLUMNS = [
       { href: "/prompts", label: "Prompt generator" },
       { href: "/templates", label: "Templates" },
       { href: "/saved", label: "Saved items" },
+      { href: "/account", label: "Your account" },
     ],
   },
   {
@@ -43,7 +44,7 @@ export function SiteFooter() {
             <p className="display text-lg">AI Classroom Resource Hub</p>
             <p className="mt-2 max-w-sm text-sm leading-relaxed text-muted-foreground">
               Practical, reviewed guidance for teachers deciding how AI fits in their
-              classroom. Free to use, no account needed.
+              classroom. Free to use — an account only for the things worth keeping.
             </p>
           </div>
 

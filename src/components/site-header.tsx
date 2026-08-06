@@ -5,6 +5,8 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { Bookmark, Menu, Search, X } from "lucide-react";
 
+import { AccountMenu } from "@/components/auth/account-menu";
+import { useAuth } from "@/components/providers/auth-provider";
 import { useSavedItems } from "@/components/providers/saved-items-provider";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
@@ -24,6 +26,7 @@ export function SiteHeader() {
   const pathname = usePathname();
   const router = useRouter();
   const { items, ready } = useSavedItems();
+  const { user } = useAuth();
   const [menuOpen, setMenuOpen] = React.useState(false);
   const [query, setQuery] = React.useState("");
 
@@ -95,22 +98,26 @@ export function SiteHeader() {
         </form>
 
         <div className="ml-auto flex items-center gap-1 md:ml-0">
-          <Button
-            asChild
-            variant="ghost"
-            size="sm"
-            className={cn(pathname === "/saved" && "bg-surface")}
-          >
-            <Link href="/saved">
-              <Bookmark aria-hidden />
-              <span className="hidden sm:inline">Saved</span>
-              {ready && items.length > 0 && (
-                <span className="ml-0.5 rounded bg-accent-soft px-1.5 py-0.5 font-mono text-[0.6875rem] text-accent">
-                  {items.length}
-                </span>
-              )}
-            </Link>
-          </Button>
+          {user && (
+            <Button
+              asChild
+              variant="ghost"
+              size="sm"
+              className={cn(pathname === "/saved" && "bg-surface")}
+            >
+              <Link href="/saved">
+                <Bookmark aria-hidden />
+                <span className="hidden sm:inline">Saved</span>
+                {ready && items.length > 0 && (
+                  <span className="ml-0.5 rounded bg-accent-soft px-1.5 py-0.5 font-mono text-[0.6875rem] text-accent">
+                    {items.length}
+                  </span>
+                )}
+              </Link>
+            </Button>
+          )}
+
+          <AccountMenu />
 
           <ThemeToggle />
 
@@ -164,15 +171,17 @@ export function SiteHeader() {
                   </Link>
                 </li>
               ))}
-              <li>
-                <Link
-                  href="/saved"
-                  onClick={() => setMenuOpen(false)}
-                  className="block rounded-md px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-surface hover:text-foreground"
-                >
-                  Saved items
-                </Link>
-              </li>
+              {user && (
+                <li>
+                  <Link
+                    href="/saved"
+                    onClick={() => setMenuOpen(false)}
+                    className="block rounded-md px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-surface hover:text-foreground"
+                  >
+                    Saved items
+                  </Link>
+                </li>
+              )}
             </ul>
           </nav>
         </div>

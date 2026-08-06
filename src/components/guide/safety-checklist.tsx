@@ -5,7 +5,8 @@ import { RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Card } from "@/components/ui/card";
-import { useLocalStorage } from "@/hooks/use-local-storage";
+import { SignInPrompt } from "@/components/auth/sign-in-prompt";
+import { useAccountStorage } from "@/hooks/use-account-storage";
 import { checklist } from "@/lib/data/guide";
 
 const STORAGE_KEY = "acrh.checklist.v1";
@@ -18,7 +19,10 @@ const GROUPS = [
 ] as const;
 
 export function SafetyChecklist() {
-  const [checked, setChecked] = useLocalStorage<string[]>(STORAGE_KEY, NONE_CHECKED);
+  const [checked, setChecked, { persists }] = useAccountStorage<string[]>(
+    STORAGE_KEY,
+    NONE_CHECKED,
+  );
 
   const done = checked.length;
   const total = checklist.length;
@@ -29,7 +33,9 @@ export function SafetyChecklist() {
         <div>
           <p className="font-medium">Teacher checklist</p>
           <p className="mt-1 text-sm text-muted-foreground">
-            Your progress stays in this browser. Nothing is sent anywhere.
+            {persists
+              ? "Progress is kept against your account, on this browser."
+              : "Tick away — progress is only kept once you have an account."}
           </p>
         </div>
 
@@ -62,6 +68,15 @@ export function SafetyChecklist() {
           style={{ width: `${total === 0 ? 0 : (done / total) * 100}%` }}
         />
       </div>
+
+      {!persists && (
+        <SignInPrompt
+          className="mt-5"
+          variant="inline"
+          title="Log in to keep your progress"
+          detail="The checklist works right now. Ticking boxes just will not survive a reload without an account."
+        />
+      )}
 
       <div className="mt-8 space-y-8">
         {GROUPS.map((group) => (

@@ -2,20 +2,20 @@
 
 import * as React from "react";
 
+import { STORAGE_CHANGE_EVENT, writeJson } from "@/lib/storage";
+
 /**
  * localStorage as an external store. Using useSyncExternalStore rather than an
  * effect means the server render and the first client render agree, saved items
  * stay in sync across tabs, and there is no setState-in-effect cascade.
  */
 
-const CHANGE_EVENT = "acrh:local-storage";
-
 function subscribe(onChange: () => void) {
   window.addEventListener("storage", onChange);
-  window.addEventListener(CHANGE_EVENT, onChange);
+  window.addEventListener(STORAGE_CHANGE_EVENT, onChange);
   return () => {
     window.removeEventListener("storage", onChange);
-    window.removeEventListener(CHANGE_EVENT, onChange);
+    window.removeEventListener(STORAGE_CHANGE_EVENT, onChange);
   };
 }
 
@@ -59,13 +59,7 @@ export function useLocalStorage<T>(key: string, fallback: T) {
           ? (next as (current: T) => T)(parse(readRaw(key), fallback))
           : next;
 
-      try {
-        window.localStorage.setItem(key, JSON.stringify(resolved));
-      } catch {
-        // Full or blocked storage: the write is dropped, the page still works.
-      }
-
-      window.dispatchEvent(new Event(CHANGE_EVENT));
+      writeJson(key, resolved);
     },
     [key, fallback],
   );

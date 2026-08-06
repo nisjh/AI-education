@@ -10,7 +10,8 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { useLocalStorage } from "@/hooks/use-local-storage";
+import { SignInPrompt } from "@/components/auth/sign-in-prompt";
+import { useAccountStorage } from "@/hooks/use-account-storage";
 import { getTemplate } from "@/lib/data/templates";
 import { STORAGE_KEYS } from "@/lib/storage";
 import type { DocTemplate } from "@/lib/types";
@@ -47,7 +48,7 @@ export function TemplateEditor({ templateId }: { templateId: string }) {
 
   // Drafts for every template live under one key, so a teacher can move between
   // templates and come back to each one as they left it.
-  const [drafts, setDrafts] = useLocalStorage<Drafts>(
+  const [drafts, setDrafts, { persists }] = useAccountStorage<Drafts>(
     STORAGE_KEYS.templateDrafts,
     NO_DRAFTS,
   );
@@ -147,9 +148,19 @@ export function TemplateEditor({ templateId }: { templateId: string }) {
           </div>
 
           <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-            Your writing is saved in this browser as you type. Nothing is uploaded, and
-            clearing your browser data clears the draft.
+            {persists
+              ? "Saved to your account as you type, on this browser. Nothing is uploaded."
+              : "You can fill this in and copy it right now. Keeping the draft for next time needs an account."}
           </p>
+
+          {!persists && (
+            <SignInPrompt
+              className="mt-4"
+              variant="inline"
+              title="Log in to keep this draft"
+              detail="Without an account it clears when you leave the page. Copy as text still works."
+            />
+          )}
 
           <div className="mt-4 flex flex-wrap gap-2">
             <CopyButton

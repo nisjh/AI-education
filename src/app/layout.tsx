@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Mono, IBM_Plex_Sans, Source_Serif_4 } from "next/font/google";
 
+import { AuthProvider } from "@/components/providers/auth-provider";
 import { PreferencesProvider } from "@/components/providers/preferences-provider";
 import { SavedItemsProvider } from "@/components/providers/saved-items-provider";
 import { ThemeProvider } from "@/components/providers/theme-provider";
@@ -63,7 +64,8 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <PreferencesProvider>
+          <AuthProvider>
+            <PreferencesProvider>
             <SavedItemsProvider>
               <a
                 href="#main"
@@ -75,7 +77,8 @@ export default function RootLayout({
               <main id="main">{children}</main>
               <SiteFooter />
             </SavedItemsProvider>
-          </PreferencesProvider>
+            </PreferencesProvider>
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>

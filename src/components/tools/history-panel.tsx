@@ -2,6 +2,7 @@
 
 import { History, RotateCcw, Trash2 } from "lucide-react";
 
+import { SignInPrompt } from "@/components/auth/sign-in-prompt";
 import { CopyButton } from "@/components/copy-button";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -10,6 +11,8 @@ import type { HistoryEntry } from "@/lib/tools/types";
 
 interface HistoryPanelProps {
   entries: HistoryEntry[];
+  /** False when signed out: history holds for the session only. */
+  persists: boolean;
   onRestore: (entry: HistoryEntry) => void;
   onRemove: (id: string) => void;
   onClear: () => void;
@@ -26,6 +29,7 @@ function formatWhen(timestamp: number) {
 
 export function HistoryPanel({
   entries,
+  persists,
   onRestore,
   onRemove,
   onClear,
@@ -45,10 +49,20 @@ export function HistoryPanel({
         )}
       </div>
 
+      {!persists && (
+        <SignInPrompt
+          className="mt-4"
+          variant="inline"
+          title="Log in to keep your history"
+          detail="Generating works without an account. This list just empties when you leave."
+        />
+      )}
+
       {entries.length === 0 ? (
         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-          Prompts you build get saved here, in this browser only, so you can come back
-          to the set you made last period.
+          {persists
+            ? "Prompts you build get kept here against your account, so you can come back to the set you made last period."
+            : "Prompts you build in this session show up here."}
         </p>
       ) : (
         <ul className="mt-4 space-y-2">
